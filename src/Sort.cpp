@@ -26,6 +26,40 @@ int Sort::randomNumber(int start, int end)
   return random_number;
 }
 
+void Sort::printNumbers(std::vector<int> numbers, std::string message) const
+{
+  std::cout << std::endl;
+  std::cout << "Vector of size " << numbers.size() << " " << message << " is:" << std::endl;
+  std::cout << "[";
+
+  for (int i = 0; i < numbers.size(); i++)
+  {
+    std::cout << numbers[i];
+    if (i != numbers.size() - 1)
+      std::cout << ", ";
+  }
+
+  std::cout << "]";
+  std::cout << std::endl;
+}
+
+void Sort::printNumbers(std::vector<int> numbers) const
+{
+  std::cout << std::endl;
+  std::cout << "Vector of size " << numbers.size() << " is:" << std::endl;
+  std::cout << "[";
+
+  for (int i = 0; i < numbers.size(); i++)
+  {
+    std::cout << numbers[i];
+    if (i != numbers.size() - 1)
+      std::cout << ", ";
+  }
+
+  std::cout << "]";
+  std::cout << std::endl;
+}
+
 // Merge function for mergeSort, both vectors should be already sorted
 std::vector<int> Sort::merge(std::vector<int> const &vec1, std::vector<int> const &vec2)
 {
@@ -65,12 +99,12 @@ std::vector<int> Sort::merge(std::vector<int> const &vec1, std::vector<int> cons
 
 // Will be used in the quickSort function, it moves the startIndex to the correct spot,
 // meaning all the left side and all the right side should be less than and greater than itself respectively
-long Sort::partition(std::vector<int> &numbers, long startIndex, long endIndex)
+int Sort::partition(std::vector<int> &numbers, int startIndex, int endIndex)
 {
-  long pivot = numbers[startIndex];
-  long swapIndex = startIndex;
+  int pivot = numbers[startIndex];
+  int swapIndex = startIndex;
 
-  for (long i = startIndex + 1; i <= endIndex; i++)
+  for (int i = startIndex + 1; i <= endIndex; i++)
   {
     if (pivot > numbers[i])
     {
@@ -84,7 +118,7 @@ long Sort::partition(std::vector<int> &numbers, long startIndex, long endIndex)
   return swapIndex;
 }
 
-void Sort::quickSortMain(std::vector<int> &numbers, long startIndex, long endIndex)
+void Sort::quickSortMain(std::vector<int> &numbers, int startIndex, int endIndex)
 {
   if (startIndex < endIndex)
   {
@@ -266,7 +300,7 @@ void Sort::shellSort()
   shell_sort_sorted_numbers_duration = duration.count();
 }
 
-void Sort::printDurations(TimeUnits u)
+void Sort::printDuration(TimeUnits u) const
 {
   std::cout << std::endl;
   std::cout << "---------------------- " << std::endl;
@@ -309,9 +343,40 @@ void Sort::printDurations(TimeUnits u)
     std::cout << "Shell Sort: " << std::floor(shell_sort_sorted_numbers_duration / division) << unit << std::endl;
 }
 
+void Sort::printAllNumbers() const
+{
+  printNumbers(initialized_numbers, "(initial unsorted vector)");
+
+  if (insertion_sort_sorted_numbers.size())
+    printNumbers(insertion_sort_sorted_numbers, "after insertion sort");
+
+  if (selection_sort_sorted_numbers.size())
+    printNumbers(selection_sort_sorted_numbers, "after selection sort");
+
+  if (merge_sort_sorted_numbers.size())
+    printNumbers(merge_sort_sorted_numbers, "after merge sort");
+
+  if (quick_sort_sorted_numbers.size())
+    printNumbers(quick_sort_sorted_numbers, "after quick sort");
+
+  if (heap_sort_sorted_numbers.size())
+    printNumbers(heap_sort_sorted_numbers, "after heap sort");
+
+  if (BST_sort_sorted_numbers.size())
+    printNumbers(BST_sort_sorted_numbers, "after BST sort");
+
+  if (shell_sort_sorted_numbers.size())
+    printNumbers(shell_sort_sorted_numbers, "after shell sort");
+}
+
 std::vector<int> Sort::getInitializedNumbers() const
 {
   return initialized_numbers;
+}
+
+std::vector<int> Sort::getInsertionSortSortedNumbers() const
+{
+  return insertion_sort_sorted_numbers;
 }
 
 std::vector<int> Sort::getSelectionSortSortedNumbers() const

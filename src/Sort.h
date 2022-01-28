@@ -21,9 +21,13 @@ private:
   int randomNumber(int start, int end);
   int numbers_length;
   std::vector<int> merge(std::vector<int> const &vec1, std::vector<int> const &vec2);
-  long partition(std::vector<int> &numbers, long startIndex, long endIndex);
-  void quickSortMain(std::vector<int> &numbers, long startIndex, long endIndex);
+  int partition(std::vector<int> &numbers, int startIndex, int endIndex);
+  void quickSortMain(std::vector<int> &numbers, int startIndex, int endIndex);
   std::vector<int> mergeSortMain(std::vector<int> numbers);
+
+  // Print a vector
+  void printNumbers(std::vector<int> numbers, std::string message) const;
+  void printNumbers(std::vector<int> numbers) const;
 
   // Our initialized vector
   std::vector<int> initialized_numbers;
@@ -53,6 +57,7 @@ public:
   // Getters
   std::vector<int> getInitializedNumbers() const;
   std::vector<int> getSelectionSortSortedNumbers() const;
+  std::vector<int> getInsertionSortSortedNumbers() const;
   std::vector<int> getMergeSortSortedNumbers() const;
   std::vector<int> getQuickSortSortedNumbers() const;
   std::vector<int> getHeapSortSortedNumbers() const;
@@ -67,7 +72,8 @@ public:
   void BSTSort();
   void shellSort();
 
-  void printDurations(TimeUnits u);
+  void printDuration(TimeUnits u) const;
+  void printAllNumbers() const;
 };
 
 #endif /* Sort_h */
