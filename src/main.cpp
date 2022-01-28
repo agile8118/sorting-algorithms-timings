@@ -296,6 +296,139 @@ void printNumbers(std::vector<int> numbers)
     std::cout << std::endl;
 }
 
+struct Node
+{
+    int value;
+    Node *left;
+    Node *right;
+
+    Node(int value)
+    {
+        this->value = value;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+class BST
+{
+public:
+    Node *root;
+    std::vector<int> inOrderTravesedNumbers;
+
+    BST()
+    {
+        this->root = NULL;
+    }
+
+    // Insert a new item to the tree
+    void insert(int value)
+    {
+
+        Node *newNode = new Node(value);
+
+        if (root == NULL)
+        {
+            this->root = newNode;
+        }
+        else
+        {
+            Node *current = this->root;
+
+            while (true)
+            {
+                // Go to the left side
+                if (value <= current->value)
+                {
+                    if (current->left == NULL)
+                    {
+                        current->left = newNode;
+                        return;
+                    }
+                    else
+                    {
+                        current = current->left;
+                    }
+                }
+
+                // Go to the right side
+                if (value > current->value)
+                {
+                    if (current->right == NULL)
+                    {
+                        current->right = newNode;
+                        return;
+                    }
+                    else
+                    {
+                        current = current->right;
+                    }
+                }
+            }
+        }
+    }
+
+    // Check to see if a given value is in the tree
+    bool hasValue(int value)
+    {
+        if (!root)
+            return false;
+
+        Node *current = root;
+        bool found = false;
+
+        while (!found && current)
+        {
+            // Value was found
+            if (value == current->value)
+            {
+                found = true;
+            }
+
+            // Go to the left side
+            if (value < current->value)
+            {
+                current = current->left;
+            }
+
+            // Go to the right side
+            if (value > current->value)
+            {
+                current = current->right;
+            }
+        }
+
+        return found;
+    }
+
+    void traverseInOrder(Node *node)
+    {
+        if (node->left)
+            traverseInOrder(node->left);
+        inOrderTravesedNumbers.push_back(node->value);
+        if (node->right)
+            traverseInOrder(node->right);
+    }
+
+    std::vector<int> inOrder()
+    {
+        traverseInOrder(this->root);
+        return inOrderTravesedNumbers;
+    }
+};
+
+std::vector<int> BSTSort(std::vector<int> const &numbers)
+{
+    BST tree;
+
+    for (int x : numbers)
+    {
+        tree.insert(x);
+    }
+
+    return tree.inOrder();
+}
+
 int main()
 {
     //    int vector_size = 20;
