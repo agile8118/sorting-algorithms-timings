@@ -142,6 +142,84 @@ std::vector<int> quickSort(std::vector<int> numbers) {
     return numbers;
 }
 
+class MinHeap {
+private:
+    int _size = 0;
+    std::vector<int> numbers = {-1};
+    
+    int parent(int index) { return std::floor(index / 2); };
+    int left(int index) { return index * 2; };
+    int right(int index) {return index * 2 + 1; };
+    
+public:
+    bool isEmpty() const { return _size == 0; };
+    int getMin() const { return numbers[1]; };
+    void insert(int value);
+    void shiftUp(int index);
+    void shiftDown(int index);
+    int removeMin();
+};
+
+void MinHeap::insert(int value) {
+    if (_size + 1 >= numbers.size()) {
+        numbers.push_back(0);
+    }
+    
+    numbers[++_size] = value;
+    shiftUp(_size);
+}
+
+void MinHeap::shiftUp(int index) {
+    if (_size < index) return;
+    if (index == 1) return;
+    
+    if (numbers[index] < numbers[parent(index)]) {
+        std::swap(numbers[parent(index)], numbers[index]);
+    }
+    
+    shiftUp(parent(index));
+}
+
+void MinHeap::shiftDown(int index) {
+    if (index > _size) return;
+
+    int swapId = index;
+    if (left(index) <= _size && numbers[index] > numbers[left(index)]) {
+        swapId = left(index);
+    }
+    
+    if (right(index) <= _size && numbers[swapId] > numbers[right(index)]) {
+        swapId = right(index);
+    }
+    
+    if (swapId != index) {
+        std::swap(numbers[index], numbers[swapId]);
+        shiftDown(swapId);
+    }
+}
+
+int MinHeap::removeMin() {
+    int minValue = numbers[1];
+    std::swap(numbers[1], numbers[_size]);
+    --_size;
+    shiftDown(1);
+    return minValue;
+}
+
+std::vector<int> heapSort (std::vector<int> const &numbers) {
+    MinHeap heap;
+    std::vector<int> sortedNumbers;
+    
+    for (int x : numbers) {
+        heap.insert(x);
+    }
+    
+    while (!heap.isEmpty()) {
+        sortedNumbers.push_back(heap.removeMin());
+    }
+    
+    return sortedNumbers;
+}
 
 void printNumbers(std::vector<int> numbers, std::string message) {
     std::cout << std::endl;
@@ -216,11 +294,17 @@ int main()
 //     printNumbers(vec1);
 //     printNumbers(vec2);
 
-//     printNumbers(vec3);        
-    std::vector<int> vec1 = {4,  3, 2, 1 , 32, 14, 9000, 34, 56, 73, 12};
+//     printNumbers(vec3);  
 
-    std::vector<int> vec2 = quickSort(vec1);
+    // std::vector<int> vec1 = {4,  3, 2, 1 , 32, 14, 9000, 34, 56, 73, 12};
+
+    // std::vector<int> vec2 = quickSort(vec1);
+    // printNumbers(vec2);
+
+    std::vector<int> vec1 = {4, 3, 2, 1, 32, 14, 34, 54, 12232, 54, 76, 23, 97, 9000, 34, 56, 73, 12};
+    std::vector<int> vec2 = heapSort(vec1);
     printNumbers(vec2);
+
 
 }
 
