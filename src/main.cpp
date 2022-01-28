@@ -429,6 +429,32 @@ std::vector<int> BSTSort(std::vector<int> const &numbers)
     return tree.inOrder();
 }
 
+// Shell sort algorithm (based on Bubble Sort)
+std::vector<int> shellSort(std::vector<int> numbers)
+{
+    int gap = std::floor(numbers.size() / 2);
+
+    while (gap > 0)
+    {
+        for (int j = gap; j < numbers.size(); j++)
+        {
+            int temp = numbers[j]; // the right element
+            int i = 0;
+
+            for (i = j; (i >= gap) && (numbers[i - gap]) > temp; i -= gap)
+            {
+                numbers[i] = numbers[i - gap];
+            }
+
+            numbers[i] = temp;
+        }
+
+        gap = std::floor(gap / 2);
+    }
+
+    return numbers;
+}
+
 int main()
 {
     //    int vector_size = 20;
@@ -478,4 +504,8 @@ int main()
     // std::vector<int> vec1 = {4, 3, 2, 1, 32, 14, 34, 54, 12232, 54, 76, 23, 97, 9000, 34, 56, 73, 12};
     // std::vector<int> vec2 = heapSort(vec1);
     // printNumbers(vec2);
+
+    std::vector<int> vec1 = {56, 4, 3, 3, 3, 2, 1, 32, 14, 56, 9000, 34, 56, 73, 12, 35, 56, 56};
+    std::vector<int> vec2 = shellSort(vec1);
+    printNumbers(vec2);
 }
