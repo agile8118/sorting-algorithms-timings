@@ -108,6 +108,40 @@ std::vector<int> mergeSort(std::vector<int> numbers) {
     return merge(leftSide, rightSide);
 }
 
+// Will be used in the quickSort function, it moves the startIndex to the correct spot,
+// meaning all the left side and all the right side should be less than and greater than itself respectively
+long partition(std::vector<int> &numbers, long startIndex, long endIndex) {
+    long pivot = numbers[startIndex];
+    long swapIndex = startIndex;
+    
+    for (long i = startIndex + 1; i <= endIndex; i++) {
+        if (pivot > numbers[i]) {
+            swapIndex++;
+            std::swap(numbers[swapIndex], numbers[i]);
+        }
+    }
+    
+    // Finally move the pivot to the correct position
+    std::swap(numbers[startIndex], numbers[swapIndex]);
+    return swapIndex;
+}
+
+void quickSortMain(std::vector<int> &numbers, long startIndex, long endIndex) {
+    if (startIndex < endIndex) {
+        long pivotIndex = partition(numbers, startIndex, endIndex);
+        quickSortMain(numbers, startIndex, pivotIndex - 1);
+        quickSortMain(numbers, pivotIndex + 1, endIndex);
+    }
+}
+
+// The wrapper function for the main quickSort
+std::vector<int> quickSort(std::vector<int> numbers) {
+    long startIndex = 0;
+    long endIndex = numbers.size() - 1;
+    quickSortMain(numbers, startIndex, endIndex);
+    return numbers;
+}
+
 
 void printNumbers(std::vector<int> numbers, std::string message) {
     std::cout << std::endl;
@@ -173,15 +207,20 @@ int main()
 
 
     
-    std::vector<int> vec1 = {1, 5, 6, 7, 10, 14, 19};
-    std::vector<int> vec2 = {2, 6, 100, 1000};
+//     std::vector<int> vec1 = {1, 5, 6, 7, 10, 14, 19};
+//     std::vector<int> vec2 = {2, 6, 100, 1000};
     
-    std::vector<int> vec3 = merge(vec1, vec2);
+//     std::vector<int> vec3 = merge(vec1, vec2);
     
     
-    printNumbers(vec1);
+//     printNumbers(vec1);
+//     printNumbers(vec2);
+
+//     printNumbers(vec3);        
+    std::vector<int> vec1 = {4,  3, 2, 1 , 32, 14, 9000, 34, 56, 73, 12};
+
+    std::vector<int> vec2 = quickSort(vec1);
     printNumbers(vec2);
 
-    printNumbers(vec3);        
 }
 
