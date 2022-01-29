@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Sort.h"
 
+// This project is hosted on GitHub at https://github.com/agile8118/sorting-algorithms-timings
+
 /** Gets an array of integers and sorts them out using the following algorithms:
 *       - Insertion Sort
 *       - Selection Sort

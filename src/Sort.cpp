@@ -8,6 +8,13 @@ Sort::Sort()
 {
 }
 
+/**
+ * @brief Construct a new Sort:: Sort object
+ * 
+ * @param numbersLength overall length of the vector
+ * @param rangeStart the start range of each number of the vector
+ * @param rangeEnd the end range of each number vector
+ */
 Sort::Sort(int numbersLength, int rangeStart, int rangeEnd)
 {
   this->numbers_length = numbersLength;
