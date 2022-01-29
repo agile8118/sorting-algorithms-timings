@@ -27,16 +27,16 @@ int main()
     * --- Uncomment the following lines in order to be able to run and see the resutls of this example:
     */
 
-    // Sort sort(80, 0, 100);
-    // sort.selectionSort();
-    // sort.insertionSort();
-    // sort.mergeSort();
-    // sort.quickSort();
-    // sort.heapSort();
-    // sort.BSTSort();
-    // sort.shellSort();
-    // sort.printAllNumbers();
-    // sort.printDuration(microseconds);
+    Sort sort(20, 0, 100, descending);
+    sort.selectionSort();
+    sort.insertionSort();
+    sort.mergeSort();
+    sort.quickSort();
+    sort.heapSort();
+    sort.BSTSort();
+    sort.shellSort();
+    sort.printAllNumbers();
+    sort.printDuration(microseconds);
 
     /*
     * ------------------------------ EXAMPLE 2 -----------------------------      
@@ -54,10 +54,10 @@ int main()
     * --- Uncomment the following lines in order to be able to run and see the resutls of this example: ---
     */
 
-    Sort sort(10000000, 0, 100000000);
-    sort.mergeSort();
-    sort.quickSort();
-    sort.printDuration(milliseconds);
+    // Sort sort(10000000, 0, 100000000, random);
+    // sort.mergeSort();
+    // sort.quickSort();
+    // sort.printDuration(milliseconds);
 
     /*
     * ------------------------------ EPILOGUE -----------------------------      

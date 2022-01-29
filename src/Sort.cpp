@@ -4,8 +4,9 @@
 static std::random_device random_device;
 static std::mt19937 generate(random_device());
 
-Sort::Sort()
+Sort::Sort(std::vector<int> const &numbers)
 {
+  initialized_numbers = numbers;
 }
 
 /**
@@ -14,14 +15,26 @@ Sort::Sort()
  * @param numbersLength overall length of the vector
  * @param rangeStart the start range of each number of the vector
  * @param rangeEnd the end range of each number vector
+ * @param order could have 3 options, 'random', 'ascending' and 'descending'
  */
-Sort::Sort(int numbersLength, int rangeStart, int rangeEnd)
+Sort::Sort(int numbersLength, int rangeStart, int rangeEnd, OrderTypes order)
 {
   this->numbers_length = numbersLength;
   // Fills the array with random numbers
   for (int i = 0; i < this->numbers_length; i++)
   {
     initialized_numbers.push_back(randomNumber(1, 1000));
+  }
+
+  if (order == ascending || order == descending)
+  {
+    mergeSort();
+    initialized_numbers = merge_sort_sorted_numbers;
+  }
+
+  if (order == descending)
+  {
+    std::reverse(initialized_numbers.begin(), initialized_numbers.end());
   }
 }
 

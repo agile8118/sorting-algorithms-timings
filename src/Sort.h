@@ -15,6 +15,13 @@ enum TimeUnits
   milliseconds
 };
 
+enum OrderTypes
+{
+  random = 0,
+  ascending,
+  descending
+};
+
 class Sort
 {
 private:
@@ -51,8 +58,8 @@ private:
   int shell_sort_sorted_numbers_duration = 0;
 
 public:
-  Sort();
-  Sort(int numbers_length, int rangeStart, int rangeEnd);
+  Sort(std::vector<int> const &numbers);
+  Sort(int numbers_length, int rangeStart, int rangeEnd, OrderTypes order);
 
   // Getters
   std::vector<int> getInitializedNumbers() const;
