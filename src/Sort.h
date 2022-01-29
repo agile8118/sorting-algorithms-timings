@@ -11,15 +11,15 @@
 
 enum TimeUnits
 {
-  microseconds = 0,
-  milliseconds
+  Microseconds = 0,
+  Milliseconds
 };
 
 enum OrderTypes
 {
-  random = 0,
-  ascending,
-  descending
+  Random = 0,
+  Ascending,
+  Descending
 };
 
 class Sort

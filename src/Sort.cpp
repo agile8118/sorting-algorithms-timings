@@ -23,16 +23,16 @@ Sort::Sort(int numbersLength, int rangeStart, int rangeEnd, OrderTypes order)
   // Fills the array with random numbers
   for (int i = 0; i < this->numbers_length; i++)
   {
-    initialized_numbers.push_back(randomNumber(1, 1000));
+    initialized_numbers.push_back(randomNumber(rangeStart, rangeEnd));
   }
 
-  if (order == ascending || order == descending)
+  if (order == Ascending || order == Descending)
   {
     mergeSort();
     initialized_numbers = merge_sort_sorted_numbers;
   }
 
-  if (order == descending)
+  if (order == Descending)
   {
     std::reverse(initialized_numbers.begin(), initialized_numbers.end());
   }
@@ -315,6 +315,7 @@ void Sort::shellSort()
     gap = std::floor(gap / 2);
   }
 
+  std::cout << shell_sort_sorted_numbers.size() << std::endl;
   auto end = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
   shell_sort_sorted_numbers_duration = duration.count();
@@ -329,12 +330,12 @@ void Sort::printDuration(TimeUnits u) const
   int division;
   std::string unit;
 
-  if (u == microseconds)
+  if (u == Microseconds)
   {
     division = 1;
     unit = " microseconds";
   }
-  else if (u == milliseconds)
+  else if (u == Milliseconds)
   {
     division = 1000;
     unit = "ms";

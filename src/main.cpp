@@ -27,16 +27,16 @@ int main()
     * --- Uncomment the following lines in order to be able to run and see the resutls of this example:
     */
 
-    Sort sort(20, 0, 100, descending);
-    sort.selectionSort();
-    sort.insertionSort();
-    sort.mergeSort();
-    sort.quickSort();
-    sort.heapSort();
-    sort.BSTSort();
-    sort.shellSort();
-    sort.printAllNumbers();
-    sort.printDuration(microseconds);
+    // Sort sort(80, 0, 1000000, Random);
+    // sort.selectionSort();
+    // sort.insertionSort();
+    // sort.mergeSort();
+    // sort.quickSort();
+    // sort.heapSort();
+    // sort.BSTSort();
+    // sort.shellSort();
+    // sort.printAllNumbers();
+    // sort.printDuration(Microseconds);
 
     /*
     * ------------------------------ EXAMPLE 2 -----------------------------      
@@ -54,10 +54,10 @@ int main()
     * --- Uncomment the following lines in order to be able to run and see the resutls of this example: ---
     */
 
-    // Sort sort(10000000, 0, 100000000, random);
-    // sort.mergeSort();
-    // sort.quickSort();
-    // sort.printDuration(milliseconds);
+    Sort sort(10000000, 0, 100000000, Random);
+    sort.mergeSort();
+    sort.shellSort();
+    sort.printDuration(Milliseconds);
 
     /*
     * ------------------------------ EPILOGUE -----------------------------      
@@ -67,8 +67,6 @@ int main()
     * 
     * 
     * @TODO: set up multi-threading on Merge Sort to reduce the time it takes to sort very large array of numbers
-    * @TODO: Add an ability to be able to set up the initialized array with sorted numbers (ascending and descending) 
-    *        and see how the results would differ. 
     * @TODO: Try to optimize the algorithms to see how much we could reduce the computation times.
     * @TODO: Try to change the variable types of merge sort to long or unassigned long long to be able to run the test
     *        for a vector with more than billions of numbers (it might take hours for the sorting to get done).
